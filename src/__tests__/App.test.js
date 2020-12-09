@@ -4,6 +4,6 @@ import App from '../App';
 
 it('renders the header content', () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
+  const linkElement = screen.getByText(/products/i);
   expect(linkElement).toBeInTheDocument();
 });
