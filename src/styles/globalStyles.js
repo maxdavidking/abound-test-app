@@ -15,10 +15,11 @@ export default createGlobalStyle`
   }
 
   h1 {
-    color: ${colors.black}
+    color: ${colors.black};
   }
 
   h2 {
-    color: ${colors.white}
+    color: ${colors.white};
+    background-color: ${colors.black};
   }
 `;
