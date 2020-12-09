@@ -16,7 +16,7 @@
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
-  "plugins": ["react-hooks", "react", "prettier"],
+  "plugins": ["react-hooks", "react", "prettier", "testing-library"],
   "rules": {
     "comma-dangle": ["error", "never"],
     "react-hooks/rules-of-hooks": "error",
@@ -38,7 +38,7 @@
   },
   "overrides": [
     {
-      "files": ["**/*.spec.js", "**/*.spec.jsx"],
+      "files": ["**/*.test.js", "**/*.test.jsx"],
       "env": {
         "jest": true
       }
