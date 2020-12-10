@@ -5,6 +5,11 @@ import Product from './Product';
 import Loading from './Loading';
 import Error from './Error';
 
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
 const Header = styled.h2`
   font-size: 2rem;
 `;
@@ -23,9 +28,6 @@ const Products = () => {
       })
       .catch(() => {
         setStatus('error');
-      })
-      .then(() => {
-        // always executed
       });
   }, []);
 
@@ -38,12 +40,12 @@ const Products = () => {
   }
 
   return (
-    <>
+    <Container>
       <Header>Products</Header>
       {products.map((product) => (
         <Product data={product} />
       ))}
-    </>
+    </Container>
   );
 };
 
