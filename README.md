@@ -1,6 +1,22 @@
-# Getting Started with Create React App
+# Getting Started with Abound TEst App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+Design Influence - https://onepagelove.com/
+
+Prettier and Eslint are used for linting.
+
+Create React App is used in this project. CRA is built for this purpose (to get a site off the ground easily) and I have experience using it. I've also used Next.js and Gatsby which are similar in idea, but they’ve got a bit more setup.
+
+React Testing Library - smoke specs for all components. I'm using react testing library because I like the syntax and structure better and it leans into the ideology behind RTL, which is to test user behaviour rather than implementation details, which makes a lot more sense to me. I’m still not sure if I’m 100% sold on extensive front end testing though - specs on the back end make so much sense for controllers/API routes because you can test different outcomes relatively easily, but with front end testing outside of really obvious things like checking that content has loaded (e.g. after a successful API call) or that a popup is showing after a user has clicked a button I run out of ideas on what to test.
+
+Data Fetching - I prefer Axios because of the way it returns Promises (any failure is sent to .catch and any success to .then) whereas there’s some additional handling that’s required with Fetch for success/failure. Added error handling if the endpoint doesn’t return data and loading while waiting for the data response. I'm using a state machine to handle loading/error/success, even though it’s not really all that beneficial right now, but if we had more states (specific errors, different success states, etc…) this would reduce clutter.
+
+Hooks (useState, useEffect) - I love hooks. I really like their addition and they get rid of the react lifecycle which always felt a little forced. I think there's opportunity to leverage other hooks in this test app (like context) but since this is limited in scope there's just some prop drilling and state hoisting going on to pass data around.
+
+Styled components - I prefer specific styles to in each JS file with a Global styles folder for generic elements and a style vars file for repeatable styles (e.g. colors, font sizes, font-weights). Paired with that I’ll usually do Layout components for page structure, UI components for individual elements. I'm also using reset CSS to ensure consistency across browsers
+
+Unique ID in the Cart: I solved this with a quick hack using Date.now() but obviously that won’t work as a real solution. When I was looking this up some suggestions involved using a UUID library. I'm super curious to see how this would be handled in a real scenario.
 
 ## Available Scripts
 
@@ -16,55 +32,4 @@ You will also see any lint errors in the console.
 
 ### `yarn test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Launches the test runner (React Testing Library) in the interactive watch mode.\
