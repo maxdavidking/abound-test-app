@@ -38,10 +38,6 @@ export default createGlobalStyle`
     font-size: 1.5rem;
   }
 
-  p {
-
-  }
-
   button {
     cursor: pointer;
     background-color: ${colors.white};
