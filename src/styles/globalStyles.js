@@ -1,6 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
 import { reset } from 'styled-reset';
-import colors from './styleVars';
 
 export default createGlobalStyle`
   ${reset}
@@ -21,21 +20,24 @@ export default createGlobalStyle`
   html, body {
     height: 100%;
     width: 100%;
-    font-family: 'Montserrat Regular', sans-serif;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    font-size: 1rem;
   }
 
   h1 {
-    color: ${colors.black};
-    font-family: 'Montserrat Black', sans-serif;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 2rem;
   }
 
   h2 {
-    color: ${colors.white};
-    background-color: ${colors.black};
-    font-family: 'Montserrat Bold', sans-serif;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 1.5rem;
   }
 
   p {
-    
+
   }
 `;

@@ -4,13 +4,16 @@ import colors from '../styles/styleVars';
 
 const Nav = styled.nav`
   display: flex;
-  background-color: ${colors.black};
   min-height: 4rem;
-  color: ${colors.white};
   justify-content: center;
   align-items: center;
+  background-color: ${colors.lightPink};
 `;
 
-const NavBar = () => <Nav>Abound Test App</Nav>;
+const NavBar = () => (
+  <Nav>
+    <h1>Abound Test App</h1>
+  </Nav>
+);
 
 export default NavBar;
