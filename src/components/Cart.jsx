@@ -8,8 +8,16 @@ const Container = styled.div`
   flex-direction: column;
   margin: 1rem;
   flex: 0 1 25%;
+  border: 1px solid ${colors.black};
+
+  div {
+    margin: 0.5rem;
+  }
 `;
 
+const Header = styled.h1`
+  margin: 1rem;
+`;
 const ItemContainer = styled.div`
   display: flex;
   justify-content: space-between;
@@ -19,7 +27,7 @@ const ItemContainer = styled.div`
   padding: 1rem;
   border-radius: 30px;
 
-  > div {
+  div {
     margin: 0.5rem;
   }
 `;
@@ -35,18 +43,25 @@ const Cart = ({ cartContents, removeFromCart }) => {
 
   const removeItemFromCart = (id) => removeFromCart(cartContents.filter((item) => item.id !== id));
 
+  const renderCartContents = () => {
+    if (cartContents.length === 0) {
+      return <ItemContainer>Cart is empty!</ItemContainer>;
+    }
+
+    return cartContents.map((item) => (
+      <ItemContainer key={item.id}>
+        <div>{item.name}</div>
+        <div>{(item.price / 100).toFixed(2)}</div>
+        <button type="button" onClick={() => removeItemFromCart(item.id)}>
+          X
+        </button>
+      </ItemContainer>
+    ));
+  };
   return (
     <Container>
-      <h1>Cart</h1>
-      {cartContents.map((item) => (
-        <ItemContainer key={item.id}>
-          <div>{item.name}</div>
-          <div>{(item.price / 100).toFixed(2)}</div>
-          <button type="button" onClick={() => removeItemFromCart(item.id)}>
-            X
-          </button>
-        </ItemContainer>
-      ))}
+      <Header>Cart</Header>
+      {renderCartContents()}
       <div>
         Total:
         {totalCost()}
