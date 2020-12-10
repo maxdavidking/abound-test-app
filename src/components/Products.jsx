@@ -43,6 +43,7 @@ const Products = ({ addToCart, cartContents }) => {
       <h1>Products</h1>
       {products.map((product) => (
         <Product
+          key={product.id.$t}
           data={product}
           addToCart={addToCart}
           cartContents={cartContents}

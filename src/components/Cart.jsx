@@ -18,26 +18,31 @@ const ItemContainer = styled.div`
   margin: 1rem;
   padding: 1rem;
   border-radius: 30px;
+
+  > div {
+    margin: 0.5rem;
+  }
 `;
 
 const Cart = ({ cartContents, removeFromCart }) => {
   const totalCost = () => {
     const allPrices = cartContents.map((item) => item.price);
-    const totalPrice = allPrices.reduce((a, b) => a + parseInt(b, 10), 0);
-    return ` $ ${totalPrice}`;
+    const costInCents = allPrices.reduce((a, b) => a + parseInt(b, 10), 0);
+    const costInDollars = (costInCents / 100).toFixed(2);
+    const formattedCost = costInDollars ? ` $ ${costInDollars}` : ' N/A';
+    return formattedCost;
   };
+
+  const removeItemFromCart = (id) => removeFromCart(cartContents.filter((item) => item.id !== id));
 
   return (
     <Container>
       <h1>Cart</h1>
       {cartContents.map((item) => (
-        <ItemContainer>
+        <ItemContainer key={item.id}>
           <div>{item.name}</div>
-          <div>{item.price}</div>
-          <button
-            type="button"
-            onClick={() => removeFromCart([...cartContents, { name: '', price: '' }])}
-          >
+          <div>{(item.price / 100).toFixed(2)}</div>
+          <button type="button" onClick={() => removeItemFromCart(item.id)}>
             X
           </button>
         </ItemContainer>

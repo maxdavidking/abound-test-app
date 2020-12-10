@@ -34,11 +34,15 @@ const Button = styled.button`
 
 const Product = ({ data, addToCart, cartContents }) => {
   const outOfStock = data.gsx$availability.$t === 'out_of_stock';
-  const formattedCurrency = `$ ${parseInt(data.gsx$priceincents.$t, 10)}`;
+  const formattedCurrency = `$ ${(data.gsx$priceincents.$t / 100).toFixed(2)}`;
   const addItemToCart = () => {
     addToCart([
       ...cartContents,
-      { name: data.gsx$name.$t, price: data.gsx$priceincents.$t }
+      {
+        id: Date.now(),
+        name: data.gsx$name.$t,
+        price: data.gsx$priceincents.$t
+      }
     ]);
   };
 
@@ -61,13 +65,12 @@ const Product = ({ data, addToCart, cartContents }) => {
 };
 
 Product.propTypes = {
-  data: PropTypes.instanceOf(Array),
+  data: PropTypes.object.isRequired,
   addToCart: PropTypes.func.isRequired,
   cartContents: PropTypes.instanceOf(Array)
 };
 
 Product.defaultProps = {
-  data: [],
   cartContents: []
 };
 

@@ -48,5 +48,6 @@ export default createGlobalStyle`
     border: 1px solid ${colors.black};
     border-radius: 3px;
     padding: 5px 10px;
+    margin: 5px 10px;
   }
 `;
