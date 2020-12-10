@@ -6,19 +6,16 @@ const Header = styled.h2`
   font-size: 2rem;
 `;
 
-const Product = ({ data }) => {
-  // TODO check if empty array is falsey
-  if (!data) {
-    return null;
-  }
-
-  return (
-    <>
-      <Header>{data.gsx$name.$t}</Header>
-      <div>{data.gsx$priceincents.$t}</div>
-    </>
-  );
-};
+const Product = ({ data }) => (
+  <>
+    <Header>{data.gsx$name.$t}</Header>
+    <div>{data.gsx$description.$t}</div>
+    {/* Price should be displayed in format $xx.xx */}
+    <div>{data.gsx$priceincents.$t}</div>
+    {/* Availability should determine if an item can be added to cart */}
+    <div>{data.gsx$availability.$t}</div>
+  </>
+);
 
 Product.propTypes = {
   data: PropTypes.instanceOf(Array)
