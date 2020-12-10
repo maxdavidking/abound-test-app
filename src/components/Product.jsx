@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import colors from '../styles/styleVars';
 
-// Availability should control different CSS props
 const Container = styled.div`
   display: flex;
   justify-content: space-between;
@@ -23,6 +22,8 @@ const ProductInformation = styled.div`
   }
 `;
 
+// outOfStock boolean controls CSS properties to indicate to user that they
+// cannot purchase an item
 const Button = styled.button`
   background-color: ${(props) => (props.outOfStock ? colors.lightRed : 'white')};
   color: ${(props) => (props.outOfStock ? 'white' : 'black')};
@@ -34,8 +35,12 @@ const Button = styled.button`
 
 const Product = ({ data, addToCart, cartContents }) => {
   const outOfStock = data.gsx$availability.$t === 'out_of_stock';
+
   const formattedCurrency = `$ ${(data.gsx$priceincents.$t / 100).toFixed(2)}`;
+
   const addItemToCart = () => {
+    // Spread existing cart items into cartContents state and add new item with
+    // a hacky unique ID of the current time
     addToCart([
       ...cartContents,
       {
@@ -51,10 +56,10 @@ const Product = ({ data, addToCart, cartContents }) => {
       <ProductInformation outOfStock={outOfStock}>
         <h2>{data.gsx$name.$t}</h2>
         <div>{data.gsx$description.$t}</div>
-        {/* Price should be displayed in format $xx.xx */}
         <div>{formattedCurrency}</div>
       </ProductInformation>
       <Button
+        // Do now allow users to add items to Cart if outOfStock
         onClick={outOfStock ? () => {} : addItemToCart}
         outOfStock={outOfStock}
       >

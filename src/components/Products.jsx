@@ -14,10 +14,13 @@ const Container = styled.div`
 `;
 
 const Products = ({ addToCart, cartContents }) => {
+  // TODO: Should put apiUrl into env var
   const apiUrl = 'https://spreadsheets.google.com/feeds/list/1Cp0owZ_71huZOBLiX57hKTvxKYEo4qZC1y_IAHV6rX4/od6/public/values?alt=json';
+  // Default state in state machine is 'loading'
   const [status, setStatus] = useState('loading');
-  const [products, setProducts] = useState({});
+  const [products, setProducts] = useState([]);
 
+  // Get data from endpoint provided by abound
   useEffect(() => {
     axios
       .get(apiUrl)
@@ -30,14 +33,17 @@ const Products = ({ addToCart, cartContents }) => {
       });
   }, []);
 
+  // Early return if loading
   if (status === 'loading') {
     return <Loading />;
   }
 
+  // Early return if error
   if (status === 'error') {
     return <Error />;
   }
 
+  // Map through array of content and render
   return (
     <Container>
       <h1>Products</h1>

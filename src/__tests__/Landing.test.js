@@ -4,6 +4,6 @@ import Landing from '../components/Landing';
 
 it('renders the header content', () => {
   render(<Landing />);
-  const element = screen.getByText(/products/i);
+  const element = screen.getByText(/loading/i);
   expect(element).toBeInTheDocument();
 });

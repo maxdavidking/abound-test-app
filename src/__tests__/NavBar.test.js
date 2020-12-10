@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import NavBar from '../components/Product';
+import NavBar from '../components/NavBar';
 
 it('renders the navbar content', () => {
   render(<NavBar />);

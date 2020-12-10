@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import Products from '../components/Products';
 
 it('renders the header content', () => {
-  render(<Products />);
-  const element = screen.getByText(/products/i);
+  render(<Products addToCart={() => {}} cartContents={[]} />);
+  const element = screen.getByText(/loading/i);
   expect(element).toBeInTheDocument();
 });

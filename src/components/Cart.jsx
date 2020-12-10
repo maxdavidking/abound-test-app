@@ -18,6 +18,7 @@ const Container = styled.div`
 const Header = styled.h1`
   margin: 1rem;
 `;
+
 const ItemContainer = styled.div`
   display: flex;
   justify-content: space-between;
@@ -33,6 +34,7 @@ const ItemContainer = styled.div`
 `;
 
 const Cart = ({ cartContents, removeFromCart }) => {
+  // Format and add up total cost of all items in Cart
   const totalCost = () => {
     const allPrices = cartContents.map((item) => item.price);
     const costInCents = allPrices.reduce((a, b) => a + parseInt(b, 10), 0);
@@ -41,8 +43,13 @@ const Cart = ({ cartContents, removeFromCart }) => {
     return formattedCost;
   };
 
+  // TODO: Extract this method to a shared file (used in multiple places in app)
+  const formattedCurrency = (price) => `$ ${(price / 100).toFixed(2)}`;
+
+  // Remove the item that has the same unique ID as the item that is clicked
   const removeItemFromCart = (id) => removeFromCart(cartContents.filter((item) => item.id !== id));
 
+  // Early return if there are no items in the Cart
   const renderCartContents = () => {
     if (cartContents.length === 0) {
       return <ItemContainer>Cart is empty!</ItemContainer>;
@@ -51,7 +58,7 @@ const Cart = ({ cartContents, removeFromCart }) => {
     return cartContents.map((item) => (
       <ItemContainer key={item.id}>
         <div>{item.name}</div>
-        <div>{(item.price / 100).toFixed(2)}</div>
+        <div>{formattedCurrency(item.price)}</div>
         <button type="button" onClick={() => removeItemFromCart(item.id)}>
           X
         </button>
