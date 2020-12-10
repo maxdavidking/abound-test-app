@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import { reset } from 'styled-reset';
+import colors from './styleVars';
 
 export default createGlobalStyle`
   ${reset}
@@ -39,5 +40,13 @@ export default createGlobalStyle`
 
   p {
 
+  }
+
+  button {
+    cursor: pointer;
+    background-color: ${colors.white};
+    border: 1px solid ${colors.black};
+    border-radius: 3px;
+    padding: 5px 10px;
   }
 `;

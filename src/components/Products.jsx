@@ -9,9 +9,11 @@ import Error from './Error';
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+  margin: 1rem;
+  flex: 0 1 75%;
 `;
 
-const Products = ({ addToCart }) => {
+const Products = ({ addToCart, cartContents }) => {
   const apiUrl = 'https://spreadsheets.google.com/feeds/list/1Cp0owZ_71huZOBLiX57hKTvxKYEo4qZC1y_IAHV6rX4/od6/public/values?alt=json';
   const [status, setStatus] = useState('loading');
   const [products, setProducts] = useState({});
@@ -40,14 +42,23 @@ const Products = ({ addToCart }) => {
     <Container>
       <h1>Products</h1>
       {products.map((product) => (
-        <Product data={product} addToCart={addToCart} />
+        <Product
+          data={product}
+          addToCart={addToCart}
+          cartContents={cartContents}
+        />
       ))}
     </Container>
   );
 };
 
 Products.propTypes = {
-  addToCart: PropTypes.func.isRequired
+  addToCart: PropTypes.func.isRequired,
+  cartContents: PropTypes.instanceOf(Array)
+};
+
+Products.defaultProps = {
+  cartContents: []
 };
 
 export default Products;

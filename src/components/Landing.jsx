@@ -6,13 +6,14 @@ import Cart from './Cart';
 const Container = styled.div`
   display: flex;
   margin: 2rem;
+  justift-content: space-around;
 `;
 
 const Landing = () => {
-  const [cartContents, setCartContents] = useState({});
+  const [cartContents, setCartContents] = useState([]);
   return (
     <Container>
-      <Products addToCart={setCartContents} />
+      <Products cartContents={cartContents} addToCart={setCartContents} />
       <Cart cartContents={cartContents} removeFromCart={setCartContents} />
     </Container>
   );

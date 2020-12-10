@@ -17,38 +17,58 @@ const ProductInformation = styled.div`
   display: flex;
   flex-direction: column;
   flex: 0 1 75%;
+
+  * {
+    padding: 0.5rem;
+  }
 `;
 
 const Button = styled.button`
-  background-color: ${colors.lightPink};
-  border: 1px solid ${colors.black};
-  border-radius: 3px;
+  background-color: ${(props) => (props.outOfStock ? colors.lightRed : 'white')};
+  color: ${(props) => (props.outOfStock ? 'white' : 'black')};
   flex: 0 1 auto;
   align-self: center;
   height: 3rem;
+  cursor: ${(props) => (props.outOfStock ? 'not-allowed' : 'pointer')}; ;
 `;
 
-const Product = ({ data, addToCart }) => (
-  <Container>
-    <ProductInformation>
-      <h2>{data.gsx$name.$t}</h2>
-      <div>{data.gsx$description.$t}</div>
-      {/* Price should be displayed in format $xx.xx */}
-      <div>{data.gsx$priceincents.$t}</div>
-      {/* Availability should determine if an item can be added to cart */}
-      <div>{data.gsx$availability.$t}</div>
-    </ProductInformation>
-    <Button onClick={addToCart()}> Add to Cart </Button>
-  </Container>
-);
+const Product = ({ data, addToCart, cartContents }) => {
+  const outOfStock = data.gsx$availability.$t === 'out_of_stock';
+  const formattedCurrency = `$ ${parseInt(data.gsx$priceincents.$t, 10)}`;
+  const addItemToCart = () => {
+    addToCart([
+      ...cartContents,
+      { name: data.gsx$name.$t, price: data.gsx$priceincents.$t }
+    ]);
+  };
+
+  return (
+    <Container>
+      <ProductInformation outOfStock={outOfStock}>
+        <h2>{data.gsx$name.$t}</h2>
+        <div>{data.gsx$description.$t}</div>
+        {/* Price should be displayed in format $xx.xx */}
+        <div>{formattedCurrency}</div>
+      </ProductInformation>
+      <Button
+        onClick={outOfStock ? () => {} : addItemToCart}
+        outOfStock={outOfStock}
+      >
+        {outOfStock ? 'Out of Stock' : 'Add to Cart'}
+      </Button>
+    </Container>
+  );
+};
 
 Product.propTypes = {
   data: PropTypes.instanceOf(Array),
-  addToCart: PropTypes.func.isRequired
+  addToCart: PropTypes.func.isRequired,
+  cartContents: PropTypes.instanceOf(Array)
 };
 
 Product.defaultProps = {
-  data: []
+  data: [],
+  cartContents: []
 };
 
 export default Product;
