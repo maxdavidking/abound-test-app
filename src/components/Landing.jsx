@@ -6,7 +6,7 @@ import Cart from './Cart';
 const Container = styled.div`
   display: flex;
   margin: 2rem;
-  justift-content: space-around;
+  justify-content: space-between;
 `;
 
 const Landing = () => {
