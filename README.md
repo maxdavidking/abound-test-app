@@ -18,6 +18,11 @@ Styled components - I prefer specific styles to in each JS file with a Global st
 
 Unique ID in the Cart: I solved this with a quick hack using Date.now() but obviously that won’t work as a real solution. When I was looking this up some suggestions involved using a UUID library. I'm super curious to see how this would be handled in a real scenario.
 
+TODO:
+Add mobile styling.
+Add show/hide button for Cart
+Add preview of Cart Items in Landing page
+
 ## Available Scripts
 
 In the project directory, you can run:
