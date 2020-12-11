@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.js": "/abound-test-app/static/js/main.eb6446a6.chunk.js",
+    "main.js.map": "/abound-test-app/static/js/main.eb6446a6.chunk.js.map",
+    "runtime-main.js": "/abound-test-app/static/js/runtime-main.0e905319.js",
+    "runtime-main.js.map": "/abound-test-app/static/js/runtime-main.0e905319.js.map",
+    "static/js/2.95fca195.chunk.js": "/abound-test-app/static/js/2.95fca195.chunk.js",
+    "static/js/2.95fca195.chunk.js.map": "/abound-test-app/static/js/2.95fca195.chunk.js.map",
+    "static/js/3.2bdb92c2.chunk.js": "/abound-test-app/static/js/3.2bdb92c2.chunk.js",
+    "static/js/3.2bdb92c2.chunk.js.map": "/abound-test-app/static/js/3.2bdb92c2.chunk.js.map",
+    "index.html": "/abound-test-app/index.html",
+    "static/js/2.95fca195.chunk.js.LICENSE.txt": "/abound-test-app/static/js/2.95fca195.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.0e905319.js",
+    "static/js/2.95fca195.chunk.js",
+    "static/js/main.eb6446a6.chunk.js"
+  ]
+}
